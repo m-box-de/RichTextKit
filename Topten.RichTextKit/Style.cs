@@ -15,6 +15,7 @@
 
 using SkiaSharp;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
@@ -30,6 +31,12 @@ namespace Topten.RichTextKit
         {
             if (_sealed)
                 throw new InvalidOperationException("Style has been sealed and can't be modified");
+        }
+
+        public void LoadFont(string Path, string Name)
+        {
+            Stream font = File.OpenRead(Path);
+            FontMapper.LoadPrivateFont(font, Name);
         }
 
         /// <summary>
